@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="gift-form">
+
+  <label>
+    ¿Para quién es?
+    <input type="text" formControlName="relationship"
+           placeholder="Ej. mi madre, mi mejor amigo, mi pareja, mi profe de yoga…" />
+    @if (form.controls.relationship.touched && form.controls.relationship.invalid) {
+      <small class="error">Indica para quién es.</small>
+    }
+  </label>
+
+  <label>
+    Edad <span class="optional">(opcional)</span>
+    <input type="number" formControlName="age" min="0" max="120" placeholder="Ej. 35" />
+  </label>
+
+  <label>
+    ¿Qué ocasión es?
+    <input type="text" formControlName="occasion"
+           placeholder="Ej. cumpleaños, Navidad, aniversario, boda, agradecimiento…" />
+    @if (form.controls.occasion.touched && form.controls.occasion.invalid) {
+      <small class="error">Indica la ocasión.</small>
+    }
+  </label>
+
+  <label>
+    ¿Qué le gusta?
+    <textarea formControlName="interests" rows="3"
+              placeholder="Ej. cocina, jardinería, series de misterio, correr los fines de semana…"></textarea>
+    @if (form.controls.interests.touched && form.controls.interests.invalid) {
+      <small class="error">Cuéntanos al menos un gusto.</small>
+    }
+  </label>
+
+  <label>
+    Presupuesto máximo en € <span class="optional">(opcional)</span>
+    <input type="number" formControlName="budgetMax" min="1" placeholder="Ej. 50" />
+  </label>
+
+  <label>
+    ¿Algo más? <span class="optional">(opcional)</span>
+    <textarea formControlName="notes" rows="3"
+              placeholder="Ej. ya tiene cafetera, no le gusta la decoración, vive en un piso pequeño…"></textarea>
+  </label>
+
+  <button type="submit" class="submit" [disabled]="loading">
+    {{ loading ? 'Buscando ideas…' : 'Sugerir regalos 🎁' }}
+  </button>
+</form>
